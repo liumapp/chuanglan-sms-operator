@@ -29,7 +29,7 @@ public class SendSmsService {
         Param param = new Param();
         param.setAccount(smsApi.getAccount());
         param.setPassword(smsApi.getPassword());
-        param.setMsg1(smsApi.getSign()+msg);
+        param.setMsg1(msg);
         String str = "";
         if (!phoneList.isEmpty()) {
             for (int i=0; i<phoneList.size()-1; i++) {
