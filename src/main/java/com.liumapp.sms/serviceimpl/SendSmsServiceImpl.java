@@ -28,7 +28,6 @@ public class SendSmsServiceImpl implements SendSmsService {
         param.setAccount(smsApi.getAccount());
         param.setPassword(smsApi.getPassword());
         param.setMsg1(smsApi.getSign()+param.getMsg());
-        param.setPhone();
 
         String s = JSON.toJSONString(param);
         restTemplate.getMessageConverters()
