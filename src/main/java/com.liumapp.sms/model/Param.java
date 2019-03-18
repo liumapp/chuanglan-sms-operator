@@ -14,7 +14,7 @@ public class Param {
 
     private String sendtime;
 
-    private String report;
+    private Boolean report;
 
     private String extend;
 
@@ -62,11 +62,11 @@ public class Param {
         this.sendtime = sendtime;
     }
 
-    public String getReport() {
+    public Boolean getReport() {
         return report;
     }
 
-    public void setReport(String report) {
+    public void setReport(Boolean report) {
         this.report = report;
     }
 

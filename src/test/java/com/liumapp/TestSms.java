@@ -29,7 +29,9 @@ public class TestSms {
         list.add("1235646456");
         list.add("1516515615");
         String string = "【葫芦娃】你的验证码为1234";
-        sendSmsService.sendMsg(list, string,new Date());
+        Date date = new Date();
+        boolean report = true;
+        sendSmsService.sendMsg(list, string,date);
     }
 
 }
