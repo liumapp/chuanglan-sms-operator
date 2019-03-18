@@ -1,2 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.liumapp.sms.config.SmsOperatorConfig
+#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+#com.liumapp.sms.config.SmsOperatorConfig

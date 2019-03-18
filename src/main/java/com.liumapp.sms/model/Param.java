@@ -12,8 +12,6 @@ public class Param {
 
     private String msg;
 
-    private String msg1;
-
     private String sendtime;
 
     private String report;
@@ -86,14 +84,6 @@ public class Param {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-
-    public String getMsg1() {
-        return msg1;
-    }
-
-    public void setMsg1(String msg1) {
-        this.msg1 = msg1;
     }
 
     public List<String> getPhones() {

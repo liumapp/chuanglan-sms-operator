@@ -29,7 +29,7 @@ public class SendSmsService {
         Param param = new Param();
         param.setAccount(smsApi.getAccount());
         param.setPassword(smsApi.getPassword());
-        param.setMsg1(msg);
+        param.setMsg(msg);
         String str = "";
         if (!phoneList.isEmpty()) {
             for (int i=0; i<phoneList.size()-1; i++) {
@@ -49,7 +49,7 @@ public class SendSmsService {
         String s = JSON.toJSONString(param);
         restTemplate.getMessageConverters()
                 .add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-        String post = restTemplate.postForObject(smsApi.getUrl(), s, String.class);
-        return post;
+//        String post = restTemplate.postForObject(smsApi.getUrl(), s, String.class);
+        return null;
     }
 }

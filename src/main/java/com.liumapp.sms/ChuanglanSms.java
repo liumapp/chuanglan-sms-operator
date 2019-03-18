@@ -1,5 +1,9 @@
 package com.liumapp.sms;
 
+import com.liumapp.sms.config.SmsOperatorConfig;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Import;
+
 /**
  * TODO...
  *
@@ -7,9 +11,9 @@ package com.liumapp.sms;
  * @since 2019-03-18
  **/
 
+@EnableAutoConfiguration
+@Import(SmsOperatorConfig.class)
 public class ChuanglanSms {
 
-    public static void main(String[] args) {
 
-    }
 }
