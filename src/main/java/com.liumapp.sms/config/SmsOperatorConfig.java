@@ -1,22 +1,31 @@
 package com.liumapp.sms.config;
 
 import com.liumapp.sms.bean.SmsApi;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import com.liumapp.sms.service.SendSmsService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
+@ConditionalOnClass(SendSmsService.class)
+@EnableConfigurationProperties(SmsApi.class)
 public class SmsOperatorConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "com.liumapp.sms")
-    public SmsApi smsApi() {
-        SmsApi smsApi = new SmsApi();
-        smsApi.setAccount("account");
-        smsApi.setPassword("password");
-        smsApi.setSign("电子合同");
-        smsApi.setUrl("http://smssh1.253.com/msg/send/json");
-        return smsApi;
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "chuanglan.sms",value = "enabled",havingValue = "true")
+    public SendSmsService sendSmsService() {
+        return new SendSmsService();
+    }
+
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
 

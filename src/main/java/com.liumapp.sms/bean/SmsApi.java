@@ -1,9 +1,10 @@
 package com.liumapp.sms.bean;
 
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Component
+@ConfigurationProperties(prefix = "com.liumapp.sms")
 public class SmsApi {
 
     private String account;
