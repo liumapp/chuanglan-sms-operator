@@ -1,6 +1,5 @@
 package com.liumapp;
 
-import com.liumapp.sms.ChuanglanSms;
 import com.liumapp.sms.service.SendSmsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +17,7 @@ import java.util.Date;
  * @since 2019-03-18
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ChuanglanSms.class})
+@SpringBootTest
 public class TestSms {
 
     @Autowired

@@ -49,7 +49,7 @@ public class SendSmsService {
         String s = JSON.toJSONString(param);
         restTemplate.getMessageConverters()
                 .add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-//        String post = restTemplate.postForObject(smsApi.getUrl(), s, String.class);
-        return null;
+        String post = restTemplate.postForObject(smsApi.getUrl(), s, String.class);
+        return post;
     }
 }
