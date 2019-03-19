@@ -15,6 +15,8 @@ public class SmsApi {
 
     private String sign;
 
+
+
     public String getSign() {
         return sign;
     }
