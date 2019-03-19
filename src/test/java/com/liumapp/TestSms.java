@@ -1,37 +1,71 @@
 package com.liumapp;
 
-import com.liumapp.sms.ChuanglanSms;
-import com.liumapp.sms.service.SendSmsService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import com.alibaba.fastjson.JSON;
+import com.liumapp.sms.sendmsg.request.SmsSendRequest;
+import com.liumapp.sms.sendmsg.response.SmsSendResponse;
+import com.liumapp.sms.sendmsg.util.ChuangLanSmsUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
-/**
- * TODO...
- *
- * @author zwd
- * @since 2019-03-18
- **/
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ChuanglanSms.class})
 public class TestSms {
+    public static final String charset = "utf-8";
 
-    @Autowired
-    private SendSmsService sendSmsService;
-    @Test
-    public void index() {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("1235646456");
-        list.add("1516515615");
-        String string = "【葫芦娃】你的验证码为1234";
-        Date date = new Date();
-        boolean report = true;
-        sendSmsService.sendMsg(list, string,date);
+    public static String account = "YourAccount";
+
+    public static String password = "Password";
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        String smsSingleRequestServerUrl = "https://smssh1.253.com/msg/send/json";
+
+        String testbytes2 = new String(hexstr2bytes("0xF0 0x9F 0x8C 0xB9"),"utf-8");
+
+        String msg1 = "【葫芦娃】您的验证码是124567"; //葫芦娃是签名，必须携带签名
+
+        String msg= URLEncoder.encode(msg1,"utf-8");
+
+        String phone  = "Yourphone";
+
+        String report= "true";
+
+        String extend = "123";
+
+        SmsSendRequest smsSingleRequest = new SmsSendRequest(account, password, msg, phone,report,extend);
+
+        String requestJson = JSON.toJSONString(smsSingleRequest);
+
+        System.out.println("before request string is: " + requestJson);
+
+        String response = ChuangLanSmsUtil.sendSmsByPost(smsSingleRequestServerUrl, requestJson);
+
+        System.out.println("response after request result is :" + response);
+
+        SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
+
+        System.out.println("response  toString is :" + smsSingleResponse);
+    }
+
+    //eg. param: 0xF0 0x9F 0x8F 0x80
+    public static byte[] hexstr2bytes(String hexstr){
+        String[] hexstrs = hexstr.split(" ");
+        byte[] b = new byte[hexstrs.length];
+        for(int i=0;i<hexstrs.length;i++){
+            b[i] = hexStringToByte(hexstrs[i].substring(2))[0];
+        }
+        System.out.println("b"+b);
+        return b;
+    }
+
+    public static byte[] hexStringToByte(String hex) {
+        int len = (hex.length() / 2);
+        byte[] result = new byte[len];
+        char[] achar = hex.toCharArray();
+        for (int i = 0; i < len; i++) {
+            int pos = i * 2;
+            result[i] = (byte) ("0123456789ABCDEF".indexOf(achar[pos]) << 4 | "0123456789ABCDEF".indexOf(achar[pos + 1]));
+        }
+        System.out.println("result"+result);
+        return result;
     }
 
 }
