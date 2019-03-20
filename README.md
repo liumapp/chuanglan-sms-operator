@@ -27,13 +27,13 @@
          
 ## 具体使用
 
-* 调用请求类 SmsSendRequest smsSingleRequest = new SmsSendRequest(account, password, msg, phone,report,extend);
+* 请求参数： SmsSendRequest smsSingleRequest = new SmsSendRequest(account, password, msg, phone,report,extend);
 
-* 将请求参数转换成JSON格式 String requestJson = JSON.toJSONString(smsSingleRequest);
+* 将请求参数转换成JSON格式： String requestJson = JSON.toJSONString(smsSingleRequest);
 
-* 调用短信发送的方法  String response = ChuangLanSmsUtil.sendSmsByPost(smsSingleRequestServerUrl, requestJson);
+* 调用短信发送的方法：  String response = ChuangLanSmsUtil.sendSmsByPost(smsSingleRequestServerUrl, requestJson);
 
-* 再将返回值转成String SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
+* 获取返回数据： SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
 
 ## 注意事项 
 
@@ -57,8 +57,28 @@
 
 ## code状态码说明
 
-* 0 ：发送成功
-
-* 101 ： 无此用户
-
-* 107 ： 包含错误的手机号码
+* 0	提交成功
+* 101:无此用户
+* 102:密码错
+* 103:提交过快（提交速度超过流速限制）
+* 104:系统忙（因平台侧原因，暂时无法处理提交的短信）
+* 105:敏感短信（短信内容包含敏感词）
+* 106:消息长度错（>536或<=0）
+* 107:包含错误的手机号码
+* 108:手机号码个数错（群发>1000或<=0）
+* 109:无发送额度（该用户可用短信数已使用完）
+* 110:不在发送时间内
+* 113:扩展码格式错（非数字或者长度不对）
+* 114:可用参数组个数错误（小于最小设定值或者大于1000）;变量参数组大于20个
+* 116:签名不合法或未带签名（在更换自己的签名需要在平台上报备后方可使用该签名）
+* 117:IP地址认证错,请求调用的IP地址不是系统登记的IP地址
+* 118:用户没有相应的发送权限（账号被禁止发送）
+* 119:用户已过期
+* 120:违反防盗用策略(日发送限制)
+* 123"发送类型错误
+* 124:白模板匹配错误
+* 125:匹配驳回模板，提交失败
+* 127:定时发送时间格式错误
+* 128:内容编码失败
+* 129:JSON格式错误
+* 130:请求参数错误（缺少必填参数）
