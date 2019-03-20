@@ -3,6 +3,8 @@
  
 # How To Use
 
+## 通过maven加载依赖
+
 ## 请求参数
          {"account":"N6000001",
          "password":"123456",
@@ -22,7 +24,24 @@
          report：是否需要状态报告（默认false），如需状态报告则传true，选填
          extend：下发短信号码扩展码，纯数字，建议1-3位，选填
          uid：该条短信在您业务系统内的ID，如订单号或者短信发送记录流水号，选填
+         
+## 具体使用
 
+* 调用请求类 SmsSendRequest smsSingleRequest = new SmsSendRequest(account, password, msg, phone,report,extend);
+
+* 将请求参数转换成JSON格式 String requestJson = JSON.toJSONString(smsSingleRequest);
+
+* 调用短信发送的方法  String response = ChuangLanSmsUtil.sendSmsByPost(smsSingleRequestServerUrl, requestJson);
+
+* 再将返回值转成String SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
+
+## 注意事项 
+
+* 请求参数需要以JSON的格式提交
+
+* 调用短信发送方法的时候需要传两个参数，一个是请求地址，一个是封装成JSON格式的参数
+
+* 请求参数msg需要传入你的签名
 
 ## 响应数据格式：
          {"time":"20170410103836",
