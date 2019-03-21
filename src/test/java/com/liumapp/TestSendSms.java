@@ -8,7 +8,10 @@ import com.liumapp.sms.sendmsg.util.ChuangLanSmsUtil;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class TestSms {
+/**
+ * @Description:普通短信发送
+ */
+public class TestSendSms {
     public static final String charset = "utf-8";
 
     public static String account = "YourAccount";
@@ -30,7 +33,15 @@ public class TestSms {
 
         String extend = "123";
 
-        SmsSendRequest smsSingleRequest = new SmsSendRequest(account, password, msg, phone,report,extend);
+        SmsSendRequest smsSingleRequest = new SmsSendRequest();
+
+        smsSingleRequest.setAccount(account)
+                .setPassword(password)
+                .setPhone(phone)
+                .setMsg(msg)
+                .setPhone(phone)
+                .setReport(report)
+                .setExtend(extend);
 
         String requestJson = JSON.toJSONString(smsSingleRequest);
 

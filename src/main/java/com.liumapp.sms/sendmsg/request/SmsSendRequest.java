@@ -17,7 +17,7 @@ public class SmsSendRequest {
 	 */
 	private String msg;
 	/**
-	 * 机号码。多个手机号码使用英文逗号分隔，必填
+	 * 手机号码。多个手机号码使用英文逗号分隔，必填
 	 */
 	private String phone;
 	
@@ -42,31 +42,8 @@ public class SmsSendRequest {
 	public SmsSendRequest() {
 		
 	}
-	public SmsSendRequest(String account, String password, String msg, String phone) {
-		super();
-		this.account = account;
-		this.password = password;
-		this.msg = msg;
-		this.phone = phone;
-	}
-	public SmsSendRequest(String account, String password, String msg, String phone, String report) {
-		super();
-		this.account = account;
-		this.password = password;
-		this.msg = msg;
-		this.phone = phone;
-		this.report=report;
-	}
 	
-	public SmsSendRequest(String account, String password, String msg, String phone, String report,String extend) {
-		super();
-		this.account = account;
-		this.password = password;
-		this.msg = msg;
-		this.phone = phone;
-		this.extend=extend;
-		this.report=report;
-	}
+
 	public SmsSendRequest(String account, String password, String msg, String phone, String sendtime,String report,String uid) {
 		super();
 		this.account = account;
@@ -80,50 +57,58 @@ public class SmsSendRequest {
 	public String getAccount() {
 		return account;
 	}
-	public void setAccount(String account) {
+	public SmsSendRequest setAccount(String account) {
 		this.account = account;
+		return this;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public SmsSendRequest setPassword(String password) {
 		this.password = password;
+		return this;
 	}
 	public String getMsg() {
 		return msg;
 	}
-	public void setMsg(String msg) {
+	public SmsSendRequest setMsg(String msg) {
 		this.msg = msg;
+		return this;
 	}
 	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(String phone) {
+	public SmsSendRequest setPhone(String phone) {
 		this.phone = phone;
+		return this;
 	}
 	public String getSendtime() {
 		return sendtime;
 	}
-	public void setSendtime(String sendtime) {
+	public SmsSendRequest setSendtime(String sendtime) {
 		this.sendtime = sendtime;
+		return this;
 	}
 	public String getReport() {
 		return report;
 	}
-	public void setReport(String report) {
+	public SmsSendRequest setReport(String report) {
 		this.report = report;
+		return this;
 	}
 	public String getExtend() {
 		return extend;
 	}
-	public void setExtend(String extend) {
+	public SmsSendRequest setExtend(String extend) {
 		this.extend = extend;
+		return this;
 	}
 	public String getUid() {
 		return uid;
 	}
-	public void setUid(String uid) {
+	public SmsSendRequest setUid(String uid) {
 		this.uid = uid;
+		return this;
 	}
 	
 	
