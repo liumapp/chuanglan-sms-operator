@@ -5,7 +5,23 @@
 
 ## 通过maven加载依赖
 
-## 请求参数
+
+
+## 说明
+协议：http
+提交方式：post
+编码格式：UTF_8
+Content_Type:application/json
+https地址：https://smssh1.253.com/msg/send/json
+请求说明：以JSON内容为提交请求格式
+
+## 一、普通短信发送
+
+### https地址
+
+https://smssh1.253.com/msg/send/json
+
+### 请求参数
          {"account":"N6000001",
          "password":"123456",
          "msg":"【葫芦娃】您的验证码是：2530",
@@ -25,25 +41,7 @@
          extend：下发短信号码扩展码，纯数字，建议1-3位，选填
          uid：该条短信在您业务系统内的ID，如订单号或者短信发送记录流水号，选填
          
-## 具体使用
-
-* 请求参数： SmsSendRequest smsSingleRequest = new SmsSendRequest(account, password, msg, phone,report,extend);
-
-* 将请求参数转换成JSON格式： String requestJson = JSON.toJSONString(smsSingleRequest);
-
-* 调用短信发送的方法：  String response = ChuangLanSmsUtil.sendSmsByPost(smsSingleRequestServerUrl, requestJson);
-
-* 获取返回数据： SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
-
-## 注意事项 
-
-* 请求参数需要以JSON的格式提交
-
-* 调用短信发送方法的时候需要传两个参数，一个是请求地址，一个是封装成JSON格式的参数
-
-* 请求参数msg需要传入你的签名
-
-## 响应数据格式：
+### 返回参数说明
          {"time":"20170410103836",
          "msgId":"17041010383624511",
          "errorMsg":"",
@@ -54,6 +52,210 @@
          msgId：消息id
          errorMsg：状态码说明（成功返回空）
          code：状态码（详细参考提交响应状态码）
+         
+### 具体使用
+
+* 用SmsSendRequest的set方法接收请求参数：
+SmsSendRequest smsSingleRequest = new SmsSendRequest();
+
+        smsSingleRequest.setAccount(account)
+                .setPassword(password)
+                .setPhone(phone)
+                .setMsg(msg)
+                .setPhone(phone)
+                .setReport(report)
+                .setExtend(extend);
+
+* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsSingleRequest);
+* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsReportRequestUrl, requestJson);
+* 接收响应数据：SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
+
+
+         
+## 二、变量短信发送
+
+### https地址：https://smssh1.253.com/msg/variable/json
+
+### 请求参数说明
+        {"account":"N6000001",
+        "password":"123456",
+        "msg":"【葫芦娃】您的验证码是：{$var}",
+        "params":"15800000000,1234;13800000000,4321",
+        "sendtime":"201704101400",
+        "report":"true",
+        "extend":"555",
+        "uid":"321abc"
+        }
+        字段说明
+        account：创蓝API账号，必填
+        password：创蓝API密码，必填
+        msg：短信内容。长度不能超过536个字符，其中“【葫芦娃】”是签名。必填
+        params：手机号码和变量参数，多组参数使用英文分号;区分，必填
+        sendtime：定时发送短信时间。格式为yyyyMMddHHmm，值小于或等于当前时间则立即发送，默认立即发送，选填
+        report：是否需要状态报告（默认false），如需状态报告则
+        
+### 返回参数说明
+        {"failNum":"0",
+        "time":"20170410103836",
+        "successNum":"1",
+        "msgId":"17041010383624511",
+        "errorMsg":"",
+        "code":"0"
+        }
+        字段说明：
+        failNum：失败条数
+        time：响应时间
+        successNum：成功条数
+        msgId：消息id
+        errorMsg：状态码说明（成功返回空）
+        code：状态码（详细参考提交响应状态码）
+        
+### 具体使用
+* 用SmsVariableRequest的set方法接收请求参数：
+SmsVariableRequest smsVariableRequest=new SmsVariableRequest();
+        smsVariableRequest.setAccount(account)
+                .setPassword(password)
+                .setMsg(msg)
+                .setParams(params)
+                .setReport(report);
+* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsVariableRequest);
+* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsVariableRequestUrl, requestJson);
+* 接收响应数据：SmsVariableResponse smsVariableResponse = JSON.parseObject(response, SmsVariableResponse.class);
+
+## 三、查询账号余额
+
+### https地址：
+https://smssh1.253.com/msg/balance/json
+
+### 请求参数说明
+        {"account":"N6000001",
+        "password":"123456"
+        }
+        字段说明
+        account：创蓝API账号，必填
+        password：创蓝API密码，必填
+        
+### 响应参数说明
+        成功响应数据格式：
+        {"balance":"2530",
+        "time":"20170410103836",
+        "errorMsg":"",
+        "code":0
+        }
+        字段说明：
+        code：状态码（详细参考提交响应状态码）
+        balance：剩余可用余额条数
+        errorMsg：状态码说明（成功返回空）
+        time：响应时间
+        
+        失败响应数据格式：
+        {"time":"20170410103836",
+        "msgId":"",
+        "errorMsg":"请求参数错误",
+        "code":"130"
+        }
+        
+### 具体使用
+* 用SmsBalanceRequest的set方法接收请求参数：
+SmsBalanceRequest smsBalanceRequest=new SmsBalanceRequest();
+        smsBalanceRequest.setAccount(account)
+                .setPassword(password);
+* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsBalanceRequest);
+* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsBalanceRequestUrl, requestJson);
+* 接收响应数据：SmsBalanceResponse smsVarableResponse = JSON.parseObject(response, SmsBalanceResponse.class);
+ 
+## 四、查询上行短信
+
+###  https地址
+https://smssh1.253.com/msg/pull/mo
+
+### 请求参数说明
+        {"account":"N6000001",
+        "password":"123456",
+        "count":"20"
+        }
+        字段说明
+        account：用户账号，必填
+        password：用户密码，必填
+        count：拉取个数（最大100，默认20），选填
+### 返回参数说明
+        响应数据格式：
+        {"ret": 0,
+        "result": [{
+        "spCode": "1069058419637252493",
+        "moTime": "1704151325",
+        "messageContent": "短信收到谢谢！",
+        "destCode": "1069058419637252493",
+        "mobile": "15821842837"
+        }]}
+        字段说明：
+        ret：请求状态。0成功，其他状态为失败
+        result：上行明细结果，没结果则返回空数组
+        spCode：平台通道码
+        moTime：上行时间，格式yyMMddHHmm，其中yy=年份的最后两位（00-99）
+        messageContent：上行内容
+        descCode：运营商通道码
+        mobile：上行手机号码
+        
+        失败响应数据格式：
+        {"ret": 1,
+        "error":"账号和密码不能为空"
+        }
+        error：请求错误描述
+        
+### 具体使用
+* SmsPullRequest的set方法接收请求参数
+SmsPullRequest smsPullRequest = new SmsPullRequest();
+        smsPullRequest.setAccount(account)
+                .setPassword(password)
+                .setCount(count);
+* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsPullRequest);
+* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsPullRequestUrl, requestJson);
+* 接收响应数据：SmsPullResponse smsPullResponse = JSON.parseObject(response, SmsPullResponse.class);
+
+## 五、查询状态报告
+
+### https地址
+https://smssh1.253.com/msg/pull/report
+
+### 请求参数说明
+          {"account":"N6000001",
+          "password":"123456",
+          "count":"20"
+          }
+          字段说明
+          account：用户账号，必填
+          password：用户密码，必填
+          count：拉取个数（最大100，默认20），选填
+      
+### 返回参数说明
+          响应数据格式：
+          {"ret":0,
+          "result":[{
+          "uid":"125",
+          "statusDesc":"被叫挂断、超时未接、关机、停机、欠费、手机号码错误导致失败。",
+          "notifyTime":"190117160742",
+          "mobile":"15300000000",
+          "length":"1",
+          "msgId":"19011716074111111",
+          "reportTime":"1901171607",
+          "status":"UNDELIV"}]}
+          字段说明：
+          ret：请求状态。0成功，其他状态为失败
+          result：状态明细结果，没结果则返回空数组
+          uid：用户在提交该短信时提交的uid参数，未提交则无该参数
+          reportTime：状态更新时间，格式yyMMddHHmm，其中yy=年份的最后两位（00-99）
+          
+### 具体使用
+* 用SmsReportRequest的set方法接收请求参数：
+SmsReportRequest smsReportRequest = new SmsReportRequest();
+        smsReportRequest.setAccount(account)
+                .setPassword(password)
+                .setCount(count);
+* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsReportRequest);
+* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsReportRequestUrl, requestJson);
+* 接收响应数据：SmsReportResponse smsReportRespnse = JSON.parseObject(response, SmsReportResponse.class);
+
 
 ## code状态码说明
 
