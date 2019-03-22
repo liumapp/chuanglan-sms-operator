@@ -8,12 +8,11 @@
 
 
 ## 说明
-协议：http
-提交方式：post
-编码格式：UTF_8
-Content_Type:application/json
-https地址：https://smssh1.253.com/msg/send/json
-请求说明：以JSON内容为提交请求格式
+        协议：http
+        提交方式：post
+        编码格式：UTF_8
+        Content_Type:application/json
+        请求说明：以JSON内容为提交请求格式
 
 ## 一、普通短信发送
 
