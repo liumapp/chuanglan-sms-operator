@@ -6,7 +6,10 @@ import com.liumapp.sms.sendmsg.request.smssend.SmsSendRequest;
 import org.junit.Test;
 
 /**
- * @Description:普通短信发送
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:普通短信发送
  */
 public class TestSendSms {
 
@@ -17,11 +20,9 @@ public class TestSendSms {
         SmsOperator smsOperator = new SmsOperator();
         SmsSend smsSend = new SmsSend();
         SmsSendRequest smsSendRequest = new SmsSendRequest();
-        smsSendRequest.setAccount("account")
-                .setPassword("password")
-                .setMsg(msg)
-                .setPath("/msg/send/json")
+        smsSendRequest.setMsg(msg)
                 .setPhone("17767146460")
+                .setReport("true")
                 .setPath("/msg/send/json");
         JSONObject result = smsOperator.doJob(smsSend,smsSendRequest);
         System.out.println(result.toJSONString());

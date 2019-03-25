@@ -4,8 +4,10 @@ import com.liumapp.qtools.str.basic.StrTool;
 import com.liumapp.sms.sendmsg.job.JobData;
 
 /**
- *
- * @Description:普通短信发送实体类
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:
  */
 public class SmsSendRequest extends JobData {
 	/**

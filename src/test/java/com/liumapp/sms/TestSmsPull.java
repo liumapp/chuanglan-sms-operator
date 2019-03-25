@@ -5,9 +5,11 @@ import com.liumapp.sms.sendmsg.request.smspull.SmsPull;
 import com.liumapp.sms.sendmsg.request.smspull.SmsPullRequest;
 import org.junit.Test;
 
-
 /**
- * @Description:查询上行短信
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:查询上行短信
  */
 public class TestSmsPull {
 
@@ -16,9 +18,7 @@ public class TestSmsPull {
         SmsOperator smsOperator = new SmsOperator();
         SmsPullRequest smsPullRequest = new SmsPullRequest();
         SmsPull smsPull = new SmsPull();
-        smsPullRequest.setAccount("account")
-                .setPassword("password")
-                .setCount("1")
+        smsPullRequest.setCount("1")
                 .setPath("/msg/pull/mo");
         JSONObject result = smsOperator.doJob(smsPull,smsPullRequest);
         System.out.println(result.toJSONString());

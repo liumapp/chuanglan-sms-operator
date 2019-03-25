@@ -13,6 +13,16 @@
         编码格式：UTF_8
         Content_Type:application/json
         请求说明：以JSON内容为提交请求格式
+        
+## 配置文件配置
+
+    配置一个sms-config.yml的配置文件,必须以sms-config.yml命名
+    com:
+      liumapp:
+        sms:
+          host: 'https://smssh1.253.com'
+          account: 'this is account'
+          password: 'this is password'
 
 ## 一、普通短信发送
 
@@ -229,3 +239,6 @@ https://smssh1.253.com/msg/pull/report
 * 128:内容编码失败
 * 129:JSON格式错误
 * 130:请求参数错误（缺少必填参数）
+
+
+

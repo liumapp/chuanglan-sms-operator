@@ -10,6 +10,12 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:
+ */
 public class SmsReport extends JobDetail<SmsReportRequest> {
     public SmsReport() throws IOException {
     }
@@ -20,8 +26,8 @@ public class SmsReport extends JobDetail<SmsReportRequest> {
             return jobResult;
         }
         headers.put("Content-Type", "application/json");
-        params.put("account",data.getAccount());
-        params.put("password",data.getPassword());
+        params.put("account",smsConfig.getAccount());
+        params.put("password",smsConfig.getPassword());
         params.put("count",data.getCount());
         String jsonParams = JSON.toJSONString(params);
         headers.put("hash", Sha256Tool.toSha256String(jsonParams));

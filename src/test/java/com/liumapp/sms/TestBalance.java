@@ -8,7 +8,10 @@ import com.liumapp.sms.sendmsg.request.smsbalance.SmsBalanceRequest;
 import org.junit.Test;
 
 /**
- * @Description:查询余额
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:查询余额
  */
 public class TestBalance {
 
@@ -17,9 +20,7 @@ public class TestBalance {
         SmsOperator smsOperator = new SmsOperator();
         SmsBalanceRequest smsBalanceRequest = new SmsBalanceRequest();
         SmsBalance smsBalance = new SmsBalance();
-        smsBalanceRequest.setAccount("account")
-                .setPassword("password")
-                .setPath("/msg/balance/json");
+        smsBalanceRequest.setPath("/msg/balance/json");
         JSONObject result = smsOperator.doJob(smsBalance,smsBalanceRequest);
         System.out.println(result.toJSONString());
     }

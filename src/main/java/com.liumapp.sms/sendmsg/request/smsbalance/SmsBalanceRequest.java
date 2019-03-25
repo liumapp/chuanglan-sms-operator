@@ -2,9 +2,11 @@ package com.liumapp.sms.sendmsg.request.smsbalance;
 
 import com.liumapp.qtools.str.basic.StrTool;
 import com.liumapp.sms.sendmsg.job.JobData;
-
 /**
- * @Description:查询账号余额实体类
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:查询账号余额实体类
  */
 public class SmsBalanceRequest extends JobData {
     /**

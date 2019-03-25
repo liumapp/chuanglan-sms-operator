@@ -17,6 +17,13 @@
 	<url>http://maven.apache.org</url>
 	<description>the operator tool for chuanglan message</description>
 
+	<developers>
+		<developer>
+			<name>Hansn</name>
+			<email>chenhansheng@huluwa.cc</email>
+		</developer>
+	</developers>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.alibaba</groupId>

@@ -10,6 +10,12 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:
+ */
 public class SmsSend extends JobDetail<SmsSendRequest> {
     public SmsSend() throws IOException {
     }
@@ -21,8 +27,8 @@ public class SmsSend extends JobDetail<SmsSendRequest> {
         }
         headers.put("Content-Type", "application/text");
         headers.put("charset","utf_8");
-        params.put("account", data.getAccount());
-        params.put("password", data.getPassword());
+        params.put("account", smsConfig.getAccount());
+        params.put("password", smsConfig.getPassword());
         params.put("msg", data.getMsg());
         params.put("phone", data.getPhone());
         params.put("sendtime",data.getSendtime());

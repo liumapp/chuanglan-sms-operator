@@ -13,6 +13,12 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:
+ */
 public abstract class JobDetail<T extends JobData> {
     protected JSONObject jobResult;
 
@@ -42,7 +48,9 @@ public abstract class JobDetail<T extends JobData> {
                 .setURL(url).build();
         ConfigurationNode node = loader.load();
         SmsConfig smsConfig = new SmsConfig(
-                node.getNode("com", "liumapp", "sms", "host").getValue().toString()
+                node.getNode("com", "liumapp", "sms", "host").getValue().toString(),
+                node.getNode("com", "liumapp", "sms", "account").getValue().toString(),
+                node.getNode("com", "liumapp", "sms", "password").getValue().toString()
         );
         return smsConfig;
     }

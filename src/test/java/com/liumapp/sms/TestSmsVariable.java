@@ -5,8 +5,12 @@ import com.liumapp.sms.sendmsg.request.smsvariable.SmsVariable;
 import com.liumapp.sms.sendmsg.request.smsvariable.SmsVariableRequest;
 import org.junit.Test;
 
+
 /**
- * @Description:变量短信发送
+ * Author:Hansn
+ * Date: 2019/3/25
+ * Time: 下午4:12
+ * Description:变量短信发送
  */
 public class TestSmsVariable {
 
@@ -15,9 +19,7 @@ public class TestSmsVariable {
         SmsOperator smsOperator = new SmsOperator();
         SmsVariable smsVariable = new SmsVariable();
         SmsVariableRequest smsVariableRequest = new SmsVariableRequest();
-        smsVariableRequest.setAccount("account")
-                .setPassword("password")
-                .setMsg("【葫芦娃】尊敬的{$var},您好,您的验证码是{$var},{$var}分钟内有效")
+        smsVariableRequest.setMsg("【葫芦娃】尊敬的{$var},您好,您的验证码是{$var},{$var}分钟内有效")
                 .setParams("13262107141,闫女士,123456,3;")
                 .setReport("true")
                 .setPath("/msg/variable/json");
