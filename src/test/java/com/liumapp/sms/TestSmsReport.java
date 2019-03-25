@@ -15,8 +15,8 @@ public class TestSmsReport {
         SmsOperator smsOperator = new SmsOperator();
         SmsReport smsReport = new SmsReport();
         SmsReportRequest smsReportRequest = new SmsReportRequest();
-        smsReportRequest.setAccount("N2802947")
-                .setPassword("S5nemwZjq")
+        smsReportRequest.setAccount("account")
+                .setPassword("password")
                 .setCount("1")
                 .setPath("/msg/pull/report");
         JSONObject result = smsOperator.doJob(smsReport,smsReportRequest);

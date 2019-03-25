@@ -15,8 +15,8 @@ public class TestSmsVariable {
         SmsOperator smsOperator = new SmsOperator();
         SmsVariable smsVariable = new SmsVariable();
         SmsVariableRequest smsVariableRequest = new SmsVariableRequest();
-        smsVariableRequest.setAccount("N2802947")
-                .setPassword("S5nemwZjq")
+        smsVariableRequest.setAccount("account")
+                .setPassword("password")
                 .setMsg("【葫芦娃】尊敬的{$var},您好,您的验证码是{$var},{$var}分钟内有效")
                 .setParams("13262107141,闫女士,123456,3;")
                 .setReport("true")

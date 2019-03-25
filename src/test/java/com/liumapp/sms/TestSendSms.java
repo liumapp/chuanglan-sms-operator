@@ -17,8 +17,8 @@ public class TestSendSms {
         SmsOperator smsOperator = new SmsOperator();
         SmsSend smsSend = new SmsSend();
         SmsSendRequest smsSendRequest = new SmsSendRequest();
-        smsSendRequest.setAccount("N2802947")
-                .setPassword("S5nemwZjq")
+        smsSendRequest.setAccount("account")
+                .setPassword("password")
                 .setMsg(msg)
                 .setPath("/msg/send/json")
                 .setPhone("17767146460")

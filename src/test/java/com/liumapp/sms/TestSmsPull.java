@@ -16,8 +16,8 @@ public class TestSmsPull {
         SmsOperator smsOperator = new SmsOperator();
         SmsPullRequest smsPullRequest = new SmsPullRequest();
         SmsPull smsPull = new SmsPull();
-        smsPullRequest.setAccount("N2802947")
-                .setPassword("S5nemwZjq")
+        smsPullRequest.setAccount("account")
+                .setPassword("password")
                 .setCount("1")
                 .setPath("/msg/pull/mo");
         JSONObject result = smsOperator.doJob(smsPull,smsPullRequest);
