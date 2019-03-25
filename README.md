@@ -52,24 +52,6 @@ https://smssh1.253.com/msg/send/json
          errorMsg：状态码说明（成功返回空）
          code：状态码（详细参考提交响应状态码）
          
-### 具体使用
-
-* 用SmsSendRequest的set方法接收请求参数：
-SmsSendRequest smsSingleRequest = new SmsSendRequest();
-
-        smsSingleRequest.setAccount(account)
-                .setPassword(password)
-                .setPhone(phone)
-                .setMsg(msg)
-                .setPhone(phone)
-                .setReport(report)
-                .setExtend(extend);
-
-* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsSingleRequest);
-* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsReportRequestUrl, requestJson);
-* 接收响应数据：SmsSendResponse smsSingleResponse = JSON.parseObject(response, SmsSendResponse.class);
-
-
          
 ## 二、变量短信发送
 
@@ -109,17 +91,6 @@ SmsSendRequest smsSingleRequest = new SmsSendRequest();
         errorMsg：状态码说明（成功返回空）
         code：状态码（详细参考提交响应状态码）
         
-### 具体使用
-* 用SmsVariableRequest的set方法接收请求参数：
-SmsVariableRequest smsVariableRequest=new SmsVariableRequest();
-        smsVariableRequest.setAccount(account)
-                .setPassword(password)
-                .setMsg(msg)
-                .setParams(params)
-                .setReport(report);
-* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsVariableRequest);
-* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsVariableRequestUrl, requestJson);
-* 接收响应数据：SmsVariableResponse smsVariableResponse = JSON.parseObject(response, SmsVariableResponse.class);
 
 ## 三、查询账号余额
 
@@ -154,14 +125,6 @@ https://smssh1.253.com/msg/balance/json
         "code":"130"
         }
         
-### 具体使用
-* 用SmsBalanceRequest的set方法接收请求参数：
-SmsBalanceRequest smsBalanceRequest=new SmsBalanceRequest();
-        smsBalanceRequest.setAccount(account)
-                .setPassword(password);
-* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsBalanceRequest);
-* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsBalanceRequestUrl, requestJson);
-* 接收响应数据：SmsBalanceResponse smsVarableResponse = JSON.parseObject(response, SmsBalanceResponse.class);
  
 ## 四、查询上行短信
 
@@ -202,15 +165,6 @@ https://smssh1.253.com/msg/pull/mo
         }
         error：请求错误描述
         
-### 具体使用
-* SmsPullRequest的set方法接收请求参数
-SmsPullRequest smsPullRequest = new SmsPullRequest();
-        smsPullRequest.setAccount(account)
-                .setPassword(password)
-                .setCount(count);
-* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsPullRequest);
-* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsPullRequestUrl, requestJson);
-* 接收响应数据：SmsPullResponse smsPullResponse = JSON.parseObject(response, SmsPullResponse.class);
 
 ## 五、查询状态报告
 
@@ -245,15 +199,6 @@ https://smssh1.253.com/msg/pull/report
           uid：用户在提交该短信时提交的uid参数，未提交则无该参数
           reportTime：状态更新时间，格式yyMMddHHmm，其中yy=年份的最后两位（00-99）
           
-### 具体使用
-* 用SmsReportRequest的set方法接收请求参数：
-SmsReportRequest smsReportRequest = new SmsReportRequest();
-        smsReportRequest.setAccount(account)
-                .setPassword(password)
-                .setCount(count);
-* 将请求参数转换成JSON格式：String requestJson = JSON.toJSONString(smsReportRequest);
-* 调用发送请求的工具类：String response = ChuangLanSmsUtil.sendSmsByPost(smsReportRequestUrl, requestJson);
-* 接收响应数据：SmsReportResponse smsReportRespnse = JSON.parseObject(response, SmsReportResponse.class);
 
 
 ## code状态码说明

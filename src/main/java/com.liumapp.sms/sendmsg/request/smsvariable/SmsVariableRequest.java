@@ -1,9 +1,12 @@
-package com.liumapp.sms.sendmsg.request;
+package com.liumapp.sms.sendmsg.request.smsvariable;
+
+import com.liumapp.qtools.str.basic.StrTool;
+import com.liumapp.sms.sendmsg.job.JobData;
 
 /**
  * @Description:变量短信发送实体类
  */
-public class SmsVariableRequest {
+public class SmsVariableRequest extends JobData {
     /**
      * 创蓝API账号，必填
      */
@@ -37,12 +40,16 @@ public class SmsVariableRequest {
      * 该条短信在您业务系统内的ID，如订单号或者短信发送记录流水号，选填
      */
     private String uid;
+    /**
+     * https
+     */
+    private String path;
 
     public SmsVariableRequest() {
 
     }
 
-    public SmsVariableRequest(String account, String password, String msg, String params, String sendtime, String report, String extend, String uid) {
+    public SmsVariableRequest(String account, String password, String msg, String params, String sendtime, String report, String extend, String uid, String path) {
         this.account = account;
         this.password = password;
         this.msg = msg;
@@ -51,6 +58,7 @@ public class SmsVariableRequest {
         this.report = report;
         this.extend = extend;
         this.uid = uid;
+        this.path = path;
     }
 
     public String getAccount() {
@@ -113,5 +121,19 @@ public class SmsVariableRequest {
     public SmsVariableRequest setParams(String params) {
         this.params = params;
         return this;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public SmsVariableRequest setPath(String path) {
+        this.path = path;
+        return this;
+    }
+    public boolean checkParams () {
+        if (StrTool.isSpace(this.path))
+            this.path = "/msg/variable/json";
+        return true;
     }
 }

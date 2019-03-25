@@ -1,9 +1,13 @@
-package com.liumapp.sms.sendmsg.request;
+package com.liumapp.sms.sendmsg.request.smssend;
+
+import com.liumapp.qtools.str.basic.StrTool;
+import com.liumapp.sms.sendmsg.job.JobData;
+
 /**
  *
  * @Description:普通短信发送实体类
  */
-public class SmsSendRequest {
+public class SmsSendRequest extends JobData {
 	/**
 	 * 创蓝API账号，必填
 	 */
@@ -38,22 +42,27 @@ public class SmsSendRequest {
 	 * 该条短信在您业务系统内的ID，如订单号或者短信发送记录流水号，选填
 	 */
 	private String uid;
+	/**
+	 * https
+	 */
+	private String path;
 	
 	public SmsSendRequest() {
 		
 	}
-	
 
-	public SmsSendRequest(String account, String password, String msg, String phone, String sendtime,String report,String uid) {
-		super();
+	public SmsSendRequest(String account, String password, String msg, String phone, String sendtime, String report, String extend, String uid, String path) {
 		this.account = account;
 		this.password = password;
 		this.msg = msg;
 		this.phone = phone;
-		this.sendtime=sendtime;
-		this.report=report;
-		this.uid=uid;
+		this.sendtime = sendtime;
+		this.report = report;
+		this.extend = extend;
+		this.uid = uid;
+		this.path = path;
 	}
+
 	public String getAccount() {
 		return account;
 	}
@@ -110,6 +119,18 @@ public class SmsSendRequest {
 		this.uid = uid;
 		return this;
 	}
-	
-	
+
+	public String getPath() {
+		return path;
+	}
+
+	public SmsSendRequest setPath(String path) {
+		this.path = path;
+		return this;
+	}
+	public boolean checkParams () {
+		if (StrTool.isSpace(this.path))
+			this.path = "/msg/send/json";
+		return true;
+	}
 }
