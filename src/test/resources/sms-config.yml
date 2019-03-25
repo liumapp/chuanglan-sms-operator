@@ -2,7 +2,7 @@ com:
   liumapp:
     sms:
       host: 'https://smssh1.253.com'
-      account: 'N2802947'
-      password: 'S5nemwZjq'
+      account: 'this is account'
+      password: 'this is password'
 
 
