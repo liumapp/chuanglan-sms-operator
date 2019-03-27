@@ -6,10 +6,10 @@ import com.liumapp.sms.sendmsg.job.JobData;
 import com.liumapp.sms.sendmsg.job.JobDetail;
 
 /**
+ * file SmsOperator.java
  * Author:Hansn
  * Date: 2019/3/25
  * Time: 下午4:12
- * Description:
  */
 public class SmsOperator {
     public JSONObject doJob(JobDetail jobDetail, JobData jobData) throws OperateException{
