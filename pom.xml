@@ -124,6 +124,12 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.3</version>
+				<configuration>
+					<outputDirectory>docs</outputDirectory>
+					<sourceFileIncludes>
+						<sourceFileInclude>**/*.java</sourceFileInclude>
+					</sourceFileIncludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>

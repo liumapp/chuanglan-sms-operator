@@ -5,7 +5,13 @@
 
 ## 通过maven加载依赖
 
-
+````xml
+<dependency>
+    <groupId>com.liumapp.sms</groupId>
+	<artifactId>chuanglan-sms-operator</artifactId>
+	<version>v2.0.0</version>
+</dependency>
+````
 
 ## 说明
         协议：http
